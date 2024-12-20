@@ -1,36 +1,103 @@
-const apiKey = '<public-key>';
-const privateKey = '<private-key>';
-const ts = new Date().getTime();
-const hash = md5(ts + privateKey + apiKey);
+import { ts, apiKey, hash } from './secure.js';
+// console.log(hash);
 
+//get superheroes initial caracters
+function getSuperheroes() {
+    fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=${ts}&limit=20&offset=${Math.random()*100}&apikey=${apiKey}&hash=${hash}`)
+        .then(response => response.json())
+        .then(data => {
+            const superheroes = data.data.results;
+            console.log(superheroes);
+            displaySuperheroes(superheroes);
+        });
+}
+
+//search superheroes using name
 function searchSuperheroes() {
     const query = document.getElementById('search-input').value;
     fetch(`https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&ts=${ts}&apikey=${apiKey}&hash=${hash}`)
         .then(response => response.json())
         .then(data => {
             const superheroes = data.data.results;
+            console.log(superheroes);
             displaySuperheroes(superheroes);
         });
 }
 
+
+//Load Initial superheroes
+document.addEventListener('DOMContentLoaded', getSuperheroes);
+
+//search superheroes
+const searchButton = document.getElementById('search-btn');
+
+searchButton.onclick = searchSuperheroes;
+
+//displaySuperheroes in card
 function displaySuperheroes(superheroes) {
     const superheroList = document.getElementById('superhero-list');
     superheroList.innerHTML = '';
     superheroes.forEach(superhero => {
         const superheroItem = document.createElement('div');
         superheroItem.className = 'superhero-item';
-        superheroItem.innerHTML = `
-            <h3>${superhero.name}</h3>
-            <img src="${superhero.thumbnail.path}.${superhero.thumbnail.extension}" alt="${superhero.name}" width="100">
-            <button class="favorite-button" onclick="addToFavorites('${superhero.id}')">Add to Favorites</button>
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const img = document.createElement('img');
+        img.src = `${superhero.thumbnail.path}.${superhero.thumbnail.extension}`;
+        img.alt = superhero.name;
+        img.className = 'card-img-top';
+        card.appendChild(img);
+
+        const cardBody = document.createElement('div');
+        cardBody.className = 'card-body';
+
+        const cardTitle = document.createElement('h5');
+        cardTitle.className = 'card-title';
+        cardTitle.textContent = superhero.name;
+        cardBody.appendChild(cardTitle);
+
+        const favoriteButton = document.createElement('button');
+        favoriteButton.id = 'fab-btn';
+        favoriteButton.className = 'favorite-button btn btn-danger';
+        favoriteButton.onclick = (event) => addToFavorites(event, superhero.id);
+
+        favoriteButton.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/>
+            </svg>
         `;
+
+        cardBody.appendChild(favoriteButton);
+        card.appendChild(cardBody);
+
+        superheroItem.appendChild(card);
         superheroItem.onclick = () => openSuperheroPage(superhero.id);
         superheroList.appendChild(superheroItem);
+        // mark favourite superheroes
+        if (isFavorite(superhero.id)) {
+            favoriteButton.style.backgroundColor = '#c82333';
+        }
+
     });
 }
 
-function addToFavorites(superheroId) {
+function isFavorite(superheroId) {
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    if (favorites.includes(superheroId)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function addToFavorites(event,superheroId) {
+    event.stopPropagation();
+    event.target.style.backgroundColor = '#c82333';
+
+    // console.log(superheroId,event);
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    console.log(favorites);
     if (!favorites.includes(superheroId)) {
         favorites.push(superheroId);
         localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -42,8 +109,8 @@ function addToFavorites(superheroId) {
 
 function openSuperheroPage(superheroId) {
     window.location.href = `superhero.html?id=${superheroId}`;
+    // searchSuperheroesById(superheroId);
 }
 
-function md5(string) {
-    // Implement MD5 hashing function or use a library
-}
+
+ 

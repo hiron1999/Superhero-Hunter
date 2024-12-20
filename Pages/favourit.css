@@ -13,7 +13,36 @@ body {
     margin: 0 auto;
     padding: 0 20px;
     height: 100%;
+    
 }
+.container> h1 {
+    text-align: center;
+    padding: 2%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3em;
+    color: rgb(21, 185, 92);
+    text-shadow: gray 2px 2px 2px;
+    animation: lights 2s infinite;
+}
+
+@keyframes lights{
+    0%{
+        color: #f00;
+    }
+    25%{
+        color: #0f0;
+    }
+    50%{
+        color: #00f;
+    }
+    75%{
+        color: #ff0;
+    }
+    100%{
+        color: #f00;
+    }
+}
+
 .search-bar {
     margin: 20px 0;
     display: flex;
@@ -62,7 +91,6 @@ body {
     flex-direction: column;
     flex-grow: 1;
     flex-shrink: 1;
-    cursor: pointer;
 }
 
 .superhero-item:hover {
@@ -81,30 +109,26 @@ body {
 }
 
 .favorite-button {
-    background-color: #e7e2e2;
+    background-color: #dc3545;
     color: #fff;
     border: none;
-    height: 3em;
-    padding: 0.5em;
-    
+    padding: 10px;
+    cursor: pointer;
     border-radius: 50%;
     position: absolute;
-    top: 5%;
-    right: 5%;
+    bottom: 10px;
+    right: 10px;
     transition: background-color 0.2s;
-    z-index: 2;
-}
-.favorite-button svg {
-    height: 100%;
-    width: 100%;
-    fill: white;
 }
 
 .favorite-button:hover {
     background-color: #c82333;
 }
 
-
+.favorite-button:before {
+    content: '\2661'; /* Unicode for heart outline */
+    font-size: 16px;
+}
 
 .favorite-button.toggled:before {
     content: '\2665'; /* Unicode for filled heart */
