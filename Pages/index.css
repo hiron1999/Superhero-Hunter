@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.search-bar {
+    margin: 20px 0;
+    display: flex;
+    gap: .5em 1.5em;
+    flex-wrap: wrap;
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+    /* width: 80vh; */
+    /* height: 70px; */
+}
+#search-input{
+    min-width: 200px;
+    width: 60%;
+    flex:3 0 auto
+}
+#search-btn{
+    /* height: auto; */
+    /* width: 100%; */
+    flex:1 0 auto;
+}
+.superhero-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.superhero-item {
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.card {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    position: relative;
+}
+
+.superhero-item:hover {
+    transform: scale(1.05);
+    
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+}
+
+.card-body {
+    text-align: center;
+    padding-bottom: 40px; /* Space for the favorite button */
+}
+
+.favorite-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    transition: background-color 0.2s;
+}
+
+.favorite-button:hover {
+    background-color: #c82333;
+}
+
+.favorite-button:before {
+    content: '\2661'; /* Unicode for heart outline */
+    font-size: 16px;
+}
+
+.favorite-button.toggled:before {
+    content: '\2665'; /* Unicode for filled heart */
+    color: red;
+}
+
+@media (min-width: 576px) {
+    .superhero-item {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (min-width: 768px) {
+    .superhero-item {
+        width: calc(33.333% - 20px);
+    }
+}
+
+@media (min-width: 992px) {
+    .superhero-item {
+        width: calc(25% - 20px);
+    }
+}
+
+@media (min-width: 1200px) {
+    .superhero-item {
+        width: calc(20% - 20px);
+    }
+}
