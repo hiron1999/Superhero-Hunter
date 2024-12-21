@@ -3,16 +3,18 @@ body {
 
     font-family: Arial, sans-serif;
     background: radial-gradient(circle, rgb(203, 72, 172) 10%, rgb(103, 104, 204) 100%);
-
+    min-width: 400px;
+    min-height: 100vh;
 }
 
 
   
 .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 2% auto;
     padding: 0 20px;
     height: 100%;
+    padding: 0.5em;
     
 }
 #back-card{

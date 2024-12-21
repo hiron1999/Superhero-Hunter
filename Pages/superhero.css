@@ -5,6 +5,8 @@ body {
     background: linear-gradient(to top ,rgba(0, 0, 0, 0.938), rgba(33, 31, 31, 0.138)), url('https://www.superherodb.com/pictures2/portraits/10/100/639.jpg');
     background-size: cover;
     /* filter: blur(5px); */
+    min-width: 400px;
+    min-height: 100vh;
 }
 
 
