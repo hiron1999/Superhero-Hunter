@@ -1,8 +1,16 @@
 import { ts, apiKey, hash } from './secure.js';
 // console.log(hash);
 
+const superheroList = document.getElementById('superhero-list');
+
+function loadingSuperheroes(load_msg = 'Loading Superheroes...') {
+    superheroList.innerHTML = `<h2 style="color: gray">${load_msg}</h2>`;
+}
+
 //get superheroes initial caracters
 function getSuperheroes() {
+    loadingSuperheroes("Get ready for superheros.....");    
+
     fetch(`https://gateway.marvel.com:443/v1/public/characters?ts=${ts}&limit=20&offset=${Math.random()*100}&apikey=${apiKey}&hash=${hash}`)
         .then(response => response.json())
         .then(data => {
@@ -14,6 +22,7 @@ function getSuperheroes() {
 
 //search superheroes using name
 function searchSuperheroes() {
+    loadingSuperheroes("Searching for Superheroes.....");
     const query = document.getElementById('search-input').value;
     fetch(`https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${query}&ts=${ts}&apikey=${apiKey}&hash=${hash}`)
         .then(response => response.json())
@@ -35,8 +44,11 @@ searchButton.onclick = searchSuperheroes;
 
 //displaySuperheroes in card
 function displaySuperheroes(superheroes) {
-    const superheroList = document.getElementById('superhero-list');
+    
     superheroList.innerHTML = '';
+    if (superheroes.length === 0) {
+        superheroList.innerHTML = `<h2 style="color: gray">No superheroes found</h2>`;
+    }
     superheroes.forEach(superhero => {
         const superheroItem = document.createElement('div');
         superheroItem.className = 'superhero-item';
@@ -107,7 +119,7 @@ function addToFavorites(event,superheroId) {
     }
 }
 
-function openSuperheroPage(superheroId) {
+ function openSuperheroPage(superheroId) {
     window.location.href = `superhero.html?id=${superheroId}`;
     // searchSuperheroesById(superheroId);
 }

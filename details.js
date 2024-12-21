@@ -1,6 +1,9 @@
 import { ts, apiKey, hash } from './secure.js';
+
+const heroCard = document.getElementById("details-sheet");
 //search superheroes using Id
 function searchSuperheroesById(id) {
+    // loadingSuperheroes("Fetching Details...");
     fetch(`https://gateway.marvel.com:443/v1/public/characters/${id}?ts=${ts}&apikey=${apiKey}&hash=${hash}`)
         .then(response => response.json())
         .then(data => {
@@ -10,6 +13,9 @@ function searchSuperheroesById(id) {
         });
 }
 
+function loadingSuperheroes(load_msg = 'Fetching Details...') {
+    heroCard.innerHTML = `<h2 style="color: gray; text-align: center">${load_msg}</h2>`;
+}
 
 // populate superhero details
 function displaySuperheroeDetails(superhero) {
@@ -27,39 +33,55 @@ function displaySuperheroeDetails(superhero) {
 
     // Populate comics
     comicsSection.innerHTML = '';
-    superhero.comics.items.forEach(comic => {
-        const comicItem = document.createElement('a');
-        comicItem.textContent = comic.name;
-        comicItem.href = comic.resourceURI;
-        comicsSection.appendChild(comicItem);
-    });
+    if (superhero.comics.items.length > 0) {
+        superhero.comics.items.forEach(comic => {
+            const comicItem = document.createElement('a');
+            comicItem.textContent = comic.name;
+            comicItem.href = comic.resourceURI;
+            comicsSection.appendChild(comicItem);
+        });
+    } else {
+        comicsSection.innerHTML = 'Comics not found';
+    }
 
     // Populate events
     eventsSection.innerHTML = '';
-    superhero.events.items.forEach(event => {
-        const eventItem = document.createElement('p');
-        eventItem.textContent = event.name;
-        eventsSection.appendChild(eventItem);
-    });
+    if (superhero.events.items.length > 0) {
+        superhero.events.items.forEach(event => {
+            const eventItem = document.createElement('a');
+            eventItem.textContent = event.name;
+            eventItem.href = event.resourceURI;
+            eventsSection.appendChild(eventItem);
+        });
+    } else {
+        eventsSection.innerHTML = 'Events not found';
+    }
 
     // Populate series
     seriesSection.innerHTML = '';
-    superhero.series.items.forEach(serie => {
-
-        const serieItem = document.createElement('a');
-        serieItem.textContent = serie.name;
-        serieItem.href = serie.resourceURI;
-        seriesSection.appendChild(serieItem);
-    });
+    if (superhero.series.items.length > 0) {
+        superhero.series.items.forEach(serie => {
+            const serieItem = document.createElement('a');
+            serieItem.textContent = serie.name;
+            serieItem.href = serie.resourceURI;
+            seriesSection.appendChild(serieItem);
+        });
+    } else {
+        seriesSection.innerHTML = 'Series not found';
+    }
 
     // Populate stories
     storiesSection.innerHTML = '';
-    superhero.stories.items.forEach(story => {
-        const storyItem = document.createElement('a');
-        storyItem.textContent = story.name;
-        storyItem.href = story.resourceURI;
-        storiesSection.appendChild(storyItem);
-    });
+    if (superhero.stories.items.length > 0) {
+        superhero.stories.items.forEach(story => {
+            const storyItem = document.createElement('a');
+            storyItem.textContent = story.name;
+            storyItem.href = story.resourceURI;
+            storiesSection.appendChild(storyItem);
+        });
+    } else {
+        storiesSection.innerHTML = 'Stories not found';
+    }
 }
 
 // Get superhero id from query string

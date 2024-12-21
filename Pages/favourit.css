@@ -2,7 +2,7 @@ body {
     margin: none;
 
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background: radial-gradient(circle, rgb(203, 72, 172) 10%, rgb(103, 104, 204) 100%);
 
 }
 
@@ -14,6 +14,9 @@ body {
     padding: 0 20px;
     height: 100%;
     
+}
+#back-card{
+    background: rgba(44, 40, 40, 0.4)
 }
 .container> h1 {
     text-align: center;
@@ -79,9 +82,8 @@ body {
     flex-direction: column;
     align-self: stretch;
 }
-
 .card {
-    background-color: #fff;
+    background-color: #ffffffa0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border: none;
     border-radius: 10px;
@@ -91,6 +93,7 @@ body {
     flex-direction: column;
     flex-grow: 1;
     flex-shrink: 1;
+    cursor: pointer;
 }
 
 .superhero-item:hover {
@@ -109,30 +112,46 @@ body {
 }
 
 .favorite-button {
-    background-color: #dc3545;
+    background-color:  #c82333;
     color: #fff;
     border: none;
-    padding: 10px;
-    cursor: pointer;
+    height: 3em;
+    padding: 0.5em;
+    
     border-radius: 50%;
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    top: 5%;
+    right: 5%;
     transition: background-color 0.2s;
+    z-index: 2;
+}
+.favorite-button svg {
+    height: 100%;
+    width: 100%;
+    fill: white;
 }
 
 .favorite-button:hover {
-    background-color: #c82333;
+    background-color: #e7e2e2;
 }
 
-.favorite-button:before {
-    content: '\2661'; /* Unicode for heart outline */
-    font-size: 16px;
+#navigate-home {
+    position: sticky;
+    top: 80%;
+    left: 67%;
+    z-index: 7;
+    font-size: 1.2em;
+    background: linear-gradient(to right bottom, #c8d88f, #056011);
+    border: white solid 1px;
+    border-radius: 2em;
+    padding: 1em;
+    box-shadow: #c44d1a 0 0 2em;
 }
 
-.favorite-button.toggled:before {
-    content: '\2665'; /* Unicode for filled heart */
-    color: red;
+#navigate-home:hover {
+    background: linear-gradient(to right bottom, #056011, #c8d88f);
+    transform: scale(1.1);
+    font-weight: bold;
 }
 
 @media (min-width: 576px) {

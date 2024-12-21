@@ -3,7 +3,10 @@ body {
 
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
-
+    position: relative;
+    min-width: 400px;
+    min-height: 100vh;
+    background: radial-gradient(circle, rgb(193, 207, 140) 10%, rgb(204, 133, 103) 100%);
 }
 
 
@@ -13,6 +16,10 @@ body {
     margin: 0 auto;
     padding: 0 20px;
     height: 100%;
+}
+
+#back-card{
+    background: rgba(230, 221, 221, 0.3)
 }
 .search-bar {
     margin: 20px 0;
@@ -52,7 +59,7 @@ body {
 }
 
 .card {
-    background-color: #fff;
+    background-color: #ffffff98;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border: none;
     border-radius: 10px;
@@ -105,10 +112,23 @@ body {
 }
 
 
+#navigate-fev {
+    position: sticky;
+    top: 80%;
+    left: 67%;
+    z-index: 7;
+    font-size: 1.2em;
+    background: linear-gradient(to right bottom, #a4c823, #c82333);
+    border: white solid 1px;
+    border-radius: 2em;
+    padding: 1em;
+    box-shadow: #c82333 0 0 2em;
+}
 
-.favorite-button.toggled:before {
-    content: '\2665'; /* Unicode for filled heart */
-    color: red;
+#navigate-fev:hover {
+    background: linear-gradient(to right bottom, #c82333, #a4c823);
+    transform: scale(1.1);
+    font-weight: bold;
 }
 
 @media (min-width: 576px) {
