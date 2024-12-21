@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  
+    background: linear-gradient(to top ,rgba(0, 0, 0, 0.938), rgba(33, 31, 31, 0.138)), url('https://www.superherodb.com/pictures2/portraits/10/100/639.jpg');
+    background-size: cover;
+    /* filter: blur(5px); */
+    min-width: 400px;
+    min-height: 100vh;
+}
+
+
+
+
+.superhero-card {
+    background-color: rgba(240, 232, 232, 0.858);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0.5em;
+    margin: 5%;
+    
+   
+}
+
+.banner {
+    width: 100%;
+    height: 30vh;
+    overflow: hidden;
+}
+
+.banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding: 2em;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.superhero-name {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.superhero-description {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.details-section {
+    margin-bottom: 20px;
+}
+
+.details-section h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.details-content {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #6b6565;
+    border-radius: 5px;
+    background-color: #16151528;
+
+}
+
+.details-content a{
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: .5em;
+    
+}
+.details-content :nth-child(2n+1){
+    background-color: #f0f0f0;
+}
+.details-content a:hover{
+    background-color: #5f5555;
+    color: white;
+}
