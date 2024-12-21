@@ -9,7 +9,13 @@ body {
     background: radial-gradient(circle, rgb(193, 207, 140) 10%, rgb(204, 133, 103) 100%);
 }
 
-
+h2 {
+    color: #fff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    text-shadow: rgb(212, 22, 22) 2px 2px 2px;
+    font-size: 2.5em;
+}
   
 .container {
     max-width: 1200px;
