@@ -22,17 +22,17 @@ This project is a web application that allows users to search for superheroes, v
 ## Images
 
 ### Home Page
-![Home Page](images/home-page.png)
+![Home Page](media/home.png)
 
 ### Superhero Page
-![Superhero Page](images/superhero-page.png)
+![Superhero Page](media/details.png)
 
 ### My Favorite Superheroes Page
-![My Favorite Superheroes Page](images/favorite-superheroes-page.png)
+![My Favorite Superheroes Page](media/favoruit.png)
 
 ## Website
 
-You can view the live project at [Superhero Hunter Website](https://your-website-url.com)
+You can view the live project at [Superhero Hunter Website](https://hiron1999.github.io/Superhero-Hunter/Pages/index.html)
 
 ## Usage
 
